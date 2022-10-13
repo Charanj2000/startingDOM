@@ -78,7 +78,7 @@ var thirditem = document.querySelector('.list-group-item:nth-child(3)');
 thirditem.style.visibility = 'hidden'; */
 
 //QUERYSELECTORALL//
-var titles = document.querySelectorAll('.title');
+/* var titles = document.querySelectorAll('.title');
 console.log(titles);
 titles[0].textContent="hello";
 
@@ -100,4 +100,81 @@ for(var i=0;i<odd.length;i++){
     odd[i].style.backgroundColor ='green';
    
 
-}
+}*/
+
+
+// TRANSVERSING THE DOM//
+var itemList =document.querySelector('#items');
+//parentNode
+/* console.log(itemList.parentNode);
+itemList.parentNode.style.backgroundColor="#f4f4f4";
+console.log(itemList.parentNode.parentNode); */
+
+//parentElement//
+/* console.log(itemList.parentElement);
+itemList.parentElement.style.backgroundColor="#f4f4f4";
+console.log(itemList.parentElement.parentElement) */
+
+//childnodes//
+//console.log(itemList.childNodes);
+
+/* console.log(itemList.children);
+console.log(itemList.children[1]);
+itemList.children[1].style.backgroundColor ='yellow' */
+
+//firstchild
+/* console.log(itemList.firstChild); */
+
+//firstelementchild
+/* console.log(itemList.firstElementChild);
+itemList.firstElementChild.textContent ='hello' */
+
+
+//lastchild
+/* console.log(itemList.lastChild); */
+
+//firstelementchild
+/* console.log(itemList.lastElementChild);
+itemList.lastElementChild.textContent ='hello' */
+
+//nextsibling
+/* console.log(itemList.nextSibling); */
+//nextelementsibling
+/* console.log(itemList.nextElementSibling); */
+
+// previousSibling
+/* console.log(itemList.previousSibling); */
+//previousElementSibling
+/* console.log(itemList.previousElementSibling);
+itemList.previousElementSibling.style.color ='coral' */
+
+//createElement
+
+//create a div 
+var newdiv=document.createElement('div');
+
+//add class
+newdiv.className='hello';
+
+//add id
+newdiv.id='hello1';
+
+//add attr
+newdiv.setAttribute('title','hello div');
+
+//create text node
+var newdivtext=document.createTextNode('hello world');
+
+//add text to div
+newdiv.appendChild(newdivtext);
+
+var container = document.querySelector('header .container');
+var h1=document.querySelector('header h1');
+
+console.log(newdiv)
+
+container.insertBefore(newdiv ,h1)
+
+
+parentNode = document.getElementById('items')
+parentNode.innerHTML ='<li>Hello world</li>' +parentNode.innerHTML
