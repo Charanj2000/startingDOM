@@ -104,7 +104,7 @@ for(var i=0;i<odd.length;i++){
 
 
 // TRANSVERSING THE DOM//
-var itemList =document.querySelector('#items');
+/* var itemList =document.querySelector('#items'); */
 //parentNode
 /* console.log(itemList.parentNode);
 itemList.parentNode.style.backgroundColor="#f4f4f4";
@@ -151,30 +151,101 @@ itemList.previousElementSibling.style.color ='coral' */
 //createElement
 
 //create a div 
-var newdiv=document.createElement('div');
+/* var newdiv=document.createElement('div'); */
 
 //add class
-newdiv.className='hello';
+/* newdiv.className='hello'; */
 
 //add id
-newdiv.id='hello1';
+/* newdiv.id='hello1'; */
 
 //add attr
-newdiv.setAttribute('title','hello div');
+/* newdiv.setAttribute('title','hello div'); */
 
 //create text node
-var newdivtext=document.createTextNode('hello world');
+/* var newdivtext=document.createTextNode('hello world'); */
 
 //add text to div
-newdiv.appendChild(newdivtext);
+/* newdiv.appendChild(newdivtext);
 
 var container = document.querySelector('header .container');
 var h1=document.querySelector('header h1');
 
 console.log(newdiv)
 
-container.insertBefore(newdiv ,h1)
+container.insertBefore(newdiv ,h1) */
 
 
-parentNode = document.getElementById('items')
-parentNode.innerHTML ='<li>Hello world</li>' +parentNode.innerHTML
+/* parentNode = document.getElementById('items')
+parentNode.innerHTML ='<li>Hello world</li>' +parentNode.innerHTML */
+
+var form = document.getElementById('addForm');
+var itemlist =document.getElementById('items');
+ 
+//form submit event 
+form.addEventListener('submit' , addItem);
+//delete event
+itemlist.addEventListener('click',removeitem);
+
+
+//add item
+function addItem(e){
+    e.preventDefault();
+
+    //get input value
+    var newitem = document.getElementById('item').value;
+
+    //create new li element
+    var li= document.createElement('li');
+
+    //add class
+    li.className ='list-group-item';
+    console.log(li);
+
+    //add text node with input value
+    li.appendChild(document.createTextNode(newitem));
+    
+    //create del button elememtn
+    var delbtn = document.createElement('button');
+    
+    //add classes to del button
+    delbtn.className='btn btn-danger btn-sm float-right delete'
+
+    //appendtext node
+    delbtn.appendChild(document.createTextNode('X'));
+
+    // append button to li
+    li.appendChild(delbtn);
+
+    //append li to list 
+    itemlist.appendChild(li);
+
+    //create del button elememtn
+    var editbtn = document.createElement('button');
+    
+    //add classes to del button
+    editbtn.className='btn btn-danger btn-sm float-right edit'
+
+    //appendtext node
+    editbtn.appendChild(document.createTextNode('EDIT'));
+
+    // append button to li
+    li.appendChild(editbtn);
+
+    //append li to list 
+    itemlist.appendChild(li);
+
+    
+
+}
+function removeitem(e){
+    if(e.target.classList.contains('delete')){
+        console.log(1);
+        if(confirm("are you sure ?")){
+            var li=e.target.parentElement;
+            itemlist.removeChild(li);
+            
+        }
+    }
+}
+
