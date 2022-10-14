@@ -181,11 +181,17 @@ parentNode.innerHTML ='<li>Hello world</li>' +parentNode.innerHTML */
 
 var form = document.getElementById('addForm');
 var itemlist =document.getElementById('items');
- 
+var filter=document.getElementById('filter');
+
+
+
+
 //form submit event 
 form.addEventListener('submit' , addItem);
 //delete event
 itemlist.addEventListener('click',removeitem);
+//filter event
+filter.addEventListener('keyup',filteritems);
 
 
 //add item
@@ -195,6 +201,8 @@ function addItem(e){
     //get input value
     var newitem = document.getElementById('item').value;
 
+    var newdescription = document.getElementById('description').value;
+
     //create new li element
     var li= document.createElement('li');
 
@@ -202,8 +210,12 @@ function addItem(e){
     li.className ='list-group-item';
     console.log(li);
 
+    
+
     //add text node with input value
     li.appendChild(document.createTextNode(newitem));
+    li.appendChild(document.createTextNode(" " +newdescription));
+    
     
     //create del button elememtn
     var delbtn = document.createElement('button');
@@ -220,10 +232,10 @@ function addItem(e){
     //append li to list 
     itemlist.appendChild(li);
 
-    //create del button elememtn
+    //create edit button elememtn
     var editbtn = document.createElement('button');
     
-    //add classes to del button
+    //add classes to edit button
     editbtn.className='btn btn-danger btn-sm float-right edit'
 
     //appendtext node
@@ -249,3 +261,25 @@ function removeitem(e){
     }
 }
 
+// filter items
+function filteritems(e){
+    //convert text to lowercase
+    var text = e.target.value.toLowerCase();
+    var items= itemlist.getElementsByTagName('li');
+    console.log(items)
+    
+
+
+    //convert to an array
+    Array.from(items).forEach(function(item){
+         var itemName =item.firstChild.textContent;
+         var description=item.childNodes[1].textContent;
+         console.log(itemName);
+         if(itemName.toLowerCase().indexOf(text) != -1 || description.toLowerCase().indexOf(text) != -1 ){
+            item.style.display= 'block';
+         }
+         else{
+            item.style.display= 'none';
+         }
+    })
+}
